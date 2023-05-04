@@ -41,7 +41,22 @@ CALL showProduk();
 
 
 -- tampilkan seluruh pesanan dari semua pelanggan
-
+SELECT pesanan.id, pelanggan.kode, pelanggan.nama_pelanggan, produk.nama, pesanan_items.qty, pesanan_items.harga
+FROM pesanan
+JOIN pelanggan ON pesanan.pelanggan_id = pelanggan.id
+JOIN pesanan_items ON pesanan.id = pesanan_items.pesanan_id
+JOIN produk ON pesanan_items.produk_id = produk.id;
 
 
 -- buatkan query panjang di atas menjadi sebuah view baru: pesanan_produk_vw (menggunakan join dari table pesanan, pelanggan dan produk)
+CREATE VIEW pesanan_produk_vw AS
+SELECT pesanan.id, pelanggan.kode, pelanggan.nama_pelanggan, produk.nama, pesanan_items.qty, pesanan_items.harga
+FROM pesanan
+JOIN pelanggan ON pesanan.pelanggan_id = pelanggan.id
+JOIN pesanan_items ON pesanan.id = pesanan_items.pesanan_id
+JOIN produk ON pesanan_items.produk_id = produk.id;
+
+select * from pesanan_produk_vw;
+
+
+
