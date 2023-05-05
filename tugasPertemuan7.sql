@@ -37,7 +37,13 @@ DELIMITER ;
 CALL showProduk();
 
 -- Buat fungsi totalPesanan(), setelah itu panggil fungsinya
-
+DELIMITER $$
+CCREATE PROCEDURE totalPesanan()
+    -> BEGIN
+    -> SELECT sum(total) as total_pesanan FROM pesanan;
+    -> END$$
+DELIMITER ;
+CALL totalPesanan();
 
 
 -- tampilkan seluruh pesanan dari semua pelanggan
